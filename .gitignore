@@ -1,0 +1,17 @@
+cat <<EOF > .gitignore
+# Ignore plugin files (if using a plugin manager)
+/lazy-lock.json
+/plugin/packer_compiled.lua
+/spell/en.utf-8.add
+/spell/en.utf-8.add.spl
+/lua/.luarc.json
+
+# Session/temporary files
+**/Session.vim
+**/swap
+**/undo
+**/backup
+
+# Logs
+**/log/**
+EOF
