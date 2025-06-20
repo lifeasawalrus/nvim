@@ -8,7 +8,7 @@ require("mason").setup()
 require("mason-lspconfig").setup {
   ensure_installed = { "lua_ls", "clangd", "omnisharp", "rust_analyzer", "jdtls",
   "ltex", "texlab", "marksman", "pyright", "r_language_server", "html",
-  "ts_ls", "cssls",
+  "ts_ls", "cssls"
 },
 }
 
