@@ -5,12 +5,17 @@ require('config')
 
 require("mason").setup()
 
-require("mason-lspconfig").setup {
+require("mason-lspconfig").setup({
   ensure_installed = { "lua_ls", "clangd", "omnisharp", "rust_analyzer", "jdtls",
   "ltex", "texlab", "marksman", "pyright", "r_language_server", "html",
-  "ts_ls", "cssls"
-},
-}
+  "ts_ls", "cssls",
+  },
+  automatic_enable = {
+    exclude = {
+      "lua_ls",
+    }
+  }
+})
 
 --bracey settings
 
@@ -55,7 +60,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -75,7 +80,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' }, -- For vsnip users.
-    { name = 'luasnip' }, -- For luasnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
     -- { name = 'ultisnips' }, -- For ultisnips users.
     -- { name = 'snippy' }, -- For snippy users.
   }, {
@@ -131,6 +136,7 @@ lspconfig.lua_ls.setup {
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true), -- Include Neovim runtime files
+        checkThirdParty = false,
       },
     },
   },
